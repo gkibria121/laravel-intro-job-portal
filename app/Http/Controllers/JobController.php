@@ -16,7 +16,7 @@ class JobController extends Controller
         $experienceOptions = arrayToAccosArray(Job::$experience) ;
         $categoryOptions =   arrayToAccosArray(Job::$categories);
         
-        $jobs = Job::filter([]); 
+        $jobs = Job::filter([])->with('employer'); 
         
 
 
@@ -46,7 +46,7 @@ class JobController extends Controller
     {
        
        
-        return view('jobs.show', ['job' => $job]);
+        return view('jobs.show', ['job' => $job->load('employer.jobs')]);
     }
 
     /**

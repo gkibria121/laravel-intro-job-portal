@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Job extends Model
 {
@@ -15,7 +16,10 @@ class Job extends Model
     public static array $categories  =  ['IT', 'Finance', 'Sales', 'Marketing'];
 
     protected   $table = 'job_circulars';
-
+    public function employer() :BelongsTo
+    {
+        return $this->belongsTo(Employer::class);
+    }
     public function scopeFilter(Builder $query , array $filters){
         return $query->when(
             $filters['search']??null  ,
