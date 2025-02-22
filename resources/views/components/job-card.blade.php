@@ -1,4 +1,4 @@
- <div {{ $attributes->class(['bg-white p-4 rounded-md shadow-sm']) }}>
+ <div {{ $attributes->class(['bg-white p-4 rounded-md shadow-sm text-slate-500']) }}>
      <div class="flex justify-between text-lg">
          <h1 class=" font-bold text-black"> {{ $job->title }}</h1>
          <h1>${{ number_format($job->salary) }}</h1>
