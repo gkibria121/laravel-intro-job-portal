@@ -6,7 +6,12 @@
             <form class="grid grid-cols-2 gap-2">
                 <x-form-group>
                     <label for="search" class="font-bold">Search</label>
-                    <x-text-input placeholder="Search for any text" name="search" value="{{request('search')}}" />
+                    <x-text-input
+                        placeholder="Search for any text"
+                        name="search"
+                        :clear-btn='true'
+                        value="{{request('search')}}"
+                    />
                 </x-form-group>
                 <x-form-group>
                     <label for="salary" class="font-bold">Salary</label>
@@ -15,11 +20,13 @@
                             placeholder="From"
                             type="number"
                             name="salary_min"
+                            :clear-btn='true'
                             value="{{request('salary_min')}}"
                         />
                         <x-text-input
                             placeholder="To"
                             type="number"
+                            :clear-btn='true'
                             name="salary_max"
                             value="{{request('salary_max')}}"
                         />
