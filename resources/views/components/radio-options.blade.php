@@ -13,7 +13,9 @@
                 value="{{ $value }}"
                 @checked(request($name) === $value)
             />
-            <label for="{{ $value }}">{{ $label }}</label>
+            <label for="{{ $value }}">
+                <a href="{{ route('jobs.index', [$name => $value]) }}">{{ $label }}</a>
+            </label>
         </div>
     @endforeach
 </x-form-group>

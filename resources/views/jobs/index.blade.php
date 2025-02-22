@@ -29,7 +29,7 @@
                 <x-radio-options :name="'experience'" :options="$experienceOptions" />
                 <x-radio-options :name="'category'" :options="$categoryOptions" />
 
-                <button class="col-span-2 mt-3 w-full" type="submit">Filter</button>
+                <x-button class="col-span-2 mt-3" type="submit">Filter</x-button>
             </form>
         </x-card>
         @forelse ($jobs as $job)

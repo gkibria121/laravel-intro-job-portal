@@ -9,8 +9,16 @@
             <span>{{ $job->location }}</span>
         </h1>
         <div class="flex gap-x-4">
-            <x-tag>{{ Str::ucfirst($job->experience) }}</x-tag>
-            <x-tag>{{ $job->category }}</x-tag>
+            <x-tag>
+                <a href="{{ route('jobs.index', ['experience' => $job->experience]) }}">
+                    {{ Str::ucfirst($job->experience) }}
+                </a>
+            </x-tag>
+            <x-tag>
+                <a href="{{ route('jobs.index', ['category' => $job->category]) }}">
+                    {{ Str::ucfirst($job->category) }}
+                </a>
+            </x-tag>
         </div>
     </div>
     {{ $slot }}
