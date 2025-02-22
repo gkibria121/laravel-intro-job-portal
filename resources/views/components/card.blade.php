@@ -1,3 +1,3 @@
-<div {{ $attributes->class(['bg-white p-4 rounded-md shadow-sm']) }}>
+<div {{ $attributes->class(['rounded-md bg-white p-4 shadow-sm']) }}>
     {{ $slot }}
 </div>

@@ -1,1 +1,1 @@
-<a {{ $attributes }} {{ $attributes->class(['border  px-2 py-1 rounded-md']) }}>Show</a>
+<a {{ $attributes }} {{ $attributes->class(['rounded-md border px-2 py-1']) }}>Show</a>

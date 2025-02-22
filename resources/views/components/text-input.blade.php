@@ -1,2 +1,5 @@
-<input type={{$attributes['type']??"text"}} {{$attributes}} {{$attributes->class(['px-2 py-1 ring-1 rounded-md focus:ring-2 ring-slate-400 focus:ring-blue-400 outline-none'])}}   >
- 
+<input
+    type="{{ $attributes['type'] ?? 'text' }}"
+    {{ $attributes }}
+    {{ $attributes->class(['rounded-md px-2 py-1 outline-none ring-1 ring-slate-400 focus:ring-2 focus:ring-blue-400']) }}
+/>
