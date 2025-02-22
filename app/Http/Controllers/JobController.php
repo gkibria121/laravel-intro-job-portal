@@ -16,36 +16,8 @@ class JobController extends Controller
         $experienceOptions = arrayToAccosArray(Job::$experience) ;
         $categoryOptions =   arrayToAccosArray(Job::$categories);
         
-        $jobs = Job::query(); 
-        $jobs->when(
-            request('search'),
-            function($query ){
-                $query->where('title',"LIKE", '%'. request('search') .'%')
-                ->orWhere('description',"LIKE", '%'. request('search') .'%');
-            }
-        )->when(
-            request('salary_min'),
-            function($query ){
-                $query->where('salary',">=", request('salary_min')  );
-            }
-        )->when(
-            request('salary_max'),
-            function($query ){
-                $query->where('salary',"<=", request('salary_max')  );
-            }
-        )
-        ->when(
-            request('experience'),
-            function($query ){
-                $query->where('experience', request('experience')  );
-            }
-        )  
-        ->when(
-            request('category'),
-            function($query ){
-                $query->where('category', request('category')  );
-            }
-        );
+        $jobs = Job::filter([]); 
+        
 
 
         return view('jobs.index', ['jobs' => $jobs->paginate(10),'experienceOptions'=> $experienceOptions,"categoryOptions" => $categoryOptions]);
