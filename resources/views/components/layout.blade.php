@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 
-<body class="bg-slate-200">
+<body class="bg-slate-200 p-4">
     {{ $slot }}
 </body>
 
