@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Dotenv\Exception\ValidationException as ExceptionValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationData;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -27,6 +31,19 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        $remember =  $request->filled("remember_me")  ;
+        
+        if(!Auth::attempt($validated,$remember)){
+            throw ValidationException::withMessages([
+                'email' => [
+                    'Invalid credentials'
+                ]
+            ]);
+        }
        return redirect()->intended('/');
     }
 
