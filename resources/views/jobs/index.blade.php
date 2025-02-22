@@ -10,7 +10,7 @@
                 </x-form-group>
                 <x-form-group>
                     <label for="salary" class="font-bold">Salary</label>
-                    <div>
+                    <div class="flex gap-x-4">
                         <x-text-input
                             placeholder="From"
                             type="number"
