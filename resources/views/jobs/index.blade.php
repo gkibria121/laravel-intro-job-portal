@@ -25,5 +25,14 @@
         @empty
             No jobs found!
         @endforelse
+
+        @if (count($jobs))
+            <nav class="mb-4">
+                {{ $jobs->links() }}
+            </nav>
+        @endif
+
     </div>
+
+
 </x-layout>
