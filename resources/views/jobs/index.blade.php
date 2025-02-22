@@ -13,7 +13,7 @@
                         <span>{{ $job->location }}</span>
                     </h1>
                     <div class="flex  gap-x-4">
-                        <x-tag>{{ $job->experience }}</x-tag>
+                        <x-tag>{{ Str::ucfirst($job->experience) }}</x-tag>
                         <x-tag>{{ $job->category }}</x-tag>
                     </div>
                 </div>
