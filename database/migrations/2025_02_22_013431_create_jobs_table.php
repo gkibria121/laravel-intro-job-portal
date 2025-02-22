@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedBigInteger('salary');
             $table->string('location');
+            $table->text('description');
             $table->string('category');
             $table->enum('experience', Job::$experience);
             $table->timestamps();
