@@ -1,7 +1,7 @@
 <x-layout>
     <x-breadcrumbs :links="[ 'Jobs' => route('jobs.index')]" />
 
-    <div class="max-w-[90vw] pt-4">
+    <div class="pt-4">
         <x-card class="mb-4">
             <form class="grid grid-cols-2 gap-2">
                 <x-form-group>
@@ -29,7 +29,7 @@
                 <x-radio-options :name="'experience'" :options="$experienceOptions" />
                 <x-radio-options :name="'category'" :options="$categoryOptions" />
 
-                <x-button class="col-span-2 mt-3" type="submit">Filter</x-button>
+                <x-button class="col-span-2 mt-3 flex justify-center" type="submit">Filter</x-button>
             </form>
         </x-card>
         @forelse ($jobs as $job)
