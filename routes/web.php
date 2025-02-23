@@ -19,6 +19,8 @@ Route::middleware('auth')->group(function (){
     Route::get('jobs/{job}/apply',[JobController::class,'applyView'])->name('jobs.applyView');
     Route::post('jobs/{job}/apply',[JobController::class,'apply'])->name('jobs.apply');
     Route::resource('my-job-applications', MyJobApplicationController::class  );
+    Route::put('my-jobs/{my_job}/restore' , [MyJobController::class, 'restore'] )->name('my-jobs.restore')->middleware(EmployerMiddleware::class);
     Route::resource('my-jobs', MyJobController::class  )->middleware(EmployerMiddleware::class);
+  
     Route::resource('employers', EmployerController::class  );
 } );

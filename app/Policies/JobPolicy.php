@@ -44,8 +44,10 @@ class JobPolicy
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Job $job): bool
-    {
-        return false;
+    {   
+        
+
+        return  $user->id === $job->employer->user_id;
     }
 
     /**
