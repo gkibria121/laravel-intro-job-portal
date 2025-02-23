@@ -6,13 +6,18 @@
     <x-job-card :$job class="mt-4" />
 
     <x-card class="mt-4">
-        <form action="{{ route('jobs.apply', $job) }}" method="POST">
+        <form action="{{ route('jobs.apply', $job) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <h1 class="font-semibold">Your Job Application</h1>
 
             <x-form-group>
                 <label class="mb-1 mt-2 font-semibold">Expected Salary</label>
-                <x-text-input type="number" name="expected_salary" />
+                <x-text-input type="number" :name="'expected_salary'" />
+            </x-form-group>
+            <x-form-group>
+                <label class="mb-1 mt-2 font-semibold">File</label>
+                <x-input type="file" accept="application/pdf" name="resume" />
+                <x-validation-error-message :name='"resume"' />
             </x-form-group>
             <x-button class="mt-4">Apply</x-button>
         </form>

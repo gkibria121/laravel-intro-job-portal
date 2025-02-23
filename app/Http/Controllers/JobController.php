@@ -30,16 +30,22 @@ class JobController extends Controller
     }
     public function apply(Job $job,Request $request)
     {
+   
        $validated = $request->validate([
-        'expected_salary' =>'required|min:1|max:200000'
+        'expected_salary' =>'required|min:1|max:200000',
+        'resume' => 'required|mimes:pdf|max:4000'
        ]);
        if( Gate::denies('apply',$job)){
          return redirect()->route( 'jobs.show',$job)->with('error', "You already applied for this job!");
        }
-
+       $file = $request->file('resume');
+       $filePath = $file->store();
+      dd($filePath);
        $job->jobApplications()->create([
-        'user_id' => $request->user()->id,
-        ...$validated
+        'user_id' => $request->user()->id, 
+        'cv_path' => $filePath,
+        ...$validated,
+         
        ]);
        return redirect()->route('jobs.show',$job)->with('success', 'Successfully Applied to the job!');
     }

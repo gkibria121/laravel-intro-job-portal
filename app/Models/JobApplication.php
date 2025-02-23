@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class JobApplication extends Model
 {
-    protected   $fillable =['user_id', 'expected_salary'];
+    protected   $fillable =['user_id', 'expected_salary','cv_path'];
     public function user() :BelongsTo
     {
         return $this->belongsTo(User::class);
