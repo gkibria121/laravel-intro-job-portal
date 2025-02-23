@@ -1,7 +1,4 @@
 <x-layout>
-    <div class="my-4 text-xl">
-        {{ auth()->user()->name ?? 'Guest' }}
-    </div>
     <x-breadcrumbs :links="[ 'Jobs' => route('jobs.index')]" />
 
     <div class="pt-4">

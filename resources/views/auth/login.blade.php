@@ -12,7 +12,7 @@
             </x-form-group>
             <x-form-group>
                 <label for="" class="mb-1 font-semibold">Password</label>
-                <x-text-input name="password" />
+                <x-text-input name="password" type="password" />
                 @error('password')
                     <p class="text-red-800">{{ $errors->first('password') }}</p>
                 @enderror
