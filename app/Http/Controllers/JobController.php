@@ -16,9 +16,9 @@ class JobController extends Controller
         
         $experienceOptions = arrayToAccosArray(Job::$experience) ;
         $categoryOptions =   arrayToAccosArray(Job::$categories);
-        
-        $jobs = Job::filter([])->with('employer'); 
-        
+        $filters = request()->only(['search','salary_min','salary_max','category','experience']);
+        $jobs = Job::filter($filters )->with('employer'); 
+
 
 
         return view('jobs.index', ['jobs' => $jobs->paginate(10),'experienceOptions'=> $experienceOptions,"categoryOptions" => $categoryOptions]);
