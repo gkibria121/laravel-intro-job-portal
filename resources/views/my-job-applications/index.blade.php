@@ -12,8 +12,8 @@
                     <span>{{ $application->job->location }}</span>
                 </h2>
                 <div class="flex justify-end gap-x-2">
-                    <x-tag>{{ $application->job->experience }}</x-tag>
-                    <x-tag>{{ $application->job->category }}</x-tag>
+                    <x-tag>{{ ucfirst($application->job->experience) }}</x-tag>
+                    <x-tag>{{ ucfirst($application->job->category) }}</x-tag>
                 </div>
 
                 <div>
@@ -37,6 +37,6 @@
             </div>
         </x-card>
     @empty
-        
+        <x-card class="mt-4">No application found!</x-card>
     @endforelse
 </x-layout>

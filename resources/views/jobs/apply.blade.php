@@ -13,7 +13,6 @@
             <x-form-group>
                 <label class="mb-1 mt-2 font-semibold">Expected Salary</label>
                 <x-text-input type="number" name="expected_salary" />
-                <x-validation-error-message :name='"expected_salary"' />
             </x-form-group>
             <x-button class="mt-4">Apply</x-button>
         </form>

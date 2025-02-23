@@ -6,16 +6,10 @@
             <x-form-group>
                 <label for="" class="mb-1 font-semibold">E-mail</label>
                 <x-text-input name="email" />
-                @error('email')
-                    <p class="text-red-800">{{ $errors->first('email') }}</p>
-                @enderror
             </x-form-group>
             <x-form-group>
                 <label for="" class="mb-1 font-semibold">Password</label>
                 <x-text-input name="password" type="password" />
-                @error('password')
-                    <p class="text-red-800">{{ $errors->first('password') }}</p>
-                @enderror
             </x-form-group>
             <div class="mt-4 flex justify-between">
                 <div class="flex flex-row space-x-1">
