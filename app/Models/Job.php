@@ -36,11 +36,15 @@ class Job extends Model
          
     }
     public function scopeFilter(Builder $query , array $filters){
+
+        
         return $query->when(
             $filters['search']??null  ,
             function($query , $search ){
+                
                 $query->where('title',"LIKE", '%'. $search   .'%')
                 ->orWhere('description',"LIKE", '%'. $search   .'%');
+             
             }
         )->when(
             $filters['salary_min']??null  ,
