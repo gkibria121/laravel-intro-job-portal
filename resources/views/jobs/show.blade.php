@@ -1,9 +1,17 @@
 <x-layout>
     <x-breadcrumbs :links="[ 'Jobs' => route('jobs.index')  , $job->title => route('jobs.show',['job' => $job])]" />
+    <x-success-message />
+
     <x-job-card :$job class="mt-4">
         <p class="my-4">
             {!! nl2br($job->description) !!}
         </p>
+
+        @if ($job->hasApplied(auth()->user()))
+            <button class="rounded-md border p-4 text-black">You already applied for this job!</button>
+        @else
+            <x-link :href="route('jobs.applyView',$job)">apply</x-link>
+        @endif
     </x-job-card>
     <x-card class="mt-4">
         <h1 class="mb-4 text-xl font-semibold">More {{ $job->employer->company_name }} Jobs</h1>

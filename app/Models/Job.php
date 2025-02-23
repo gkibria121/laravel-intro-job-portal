@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Job extends Model
 {
@@ -19,6 +21,19 @@ class Job extends Model
     public function employer() :BelongsTo
     {
         return $this->belongsTo(Employer::class);
+    }
+    public function jobApplications() :HasMany
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+    public function hasApplied( Authenticatable|User|int $user) :bool
+    {
+        $id = $user->id??$user; 
+        $jobId = $this->id; 
+        return $this->whereHas('jobApplications',fn (Builder $query) => $query->where('user_id',$id))
+        ->where('id',$jobId)
+        ->exists();
+         
     }
     public function scopeFilter(Builder $query , array $filters){
         return $query->when(

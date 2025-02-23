@@ -12,4 +12,6 @@ Route::resource('auth',  AuthController::class);
 
 Route::middleware('auth')->group(function (){
     Route::delete('/logout', [AuthController::class,'logout'])->name('auth.logout'); 
+    Route::get('jobs/{job}/apply',[JobController::class,'applyView'])->name('jobs.applyView');
+    Route::post('jobs/{job}/apply',[JobController::class,'apply'])->name('jobs.apply');
 } );
