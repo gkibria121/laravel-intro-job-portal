@@ -21,7 +21,7 @@
                         <a href="">Prof. Earl Hayes</a>
                     </li>
                     <li>
-                        <a href="">Applications</a>
+                        <a href="{{ route('my-job-applications.index') }}">Applications</a>
                     </li>
                     <li>
                         <form action="{{ route('auth.logout') }}" method="POST">
