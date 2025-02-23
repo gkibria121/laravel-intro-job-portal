@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -32,7 +33,7 @@ class JobController extends Controller
        $validated = $request->validate([
         'expected_salary' =>'required|min:1|max:200000'
        ]);
-       if($job->hasApplied($request->user())){
+       if( Gate::denies('apply',$job)){
          return redirect()->route( 'jobs.show',$job)->with('error', "You already applied for this job!");
        }
 
