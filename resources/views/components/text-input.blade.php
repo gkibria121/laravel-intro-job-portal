@@ -1,6 +1,10 @@
 <div class="relative">
     @if ($clearBtn)
-        <button class="absolute right-1 h-full" type="button">
+        <button
+            class="absolute right-1 h-full"
+            type="button"
+            onclick="document.querySelector('#{{ $name }}').value='';document.querySelector('#{{ $name }}').closest('form')?.submit()"
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

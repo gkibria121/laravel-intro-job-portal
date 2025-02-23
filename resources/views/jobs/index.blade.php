@@ -8,7 +8,7 @@
                     <label for="search" class="font-bold">Search</label>
                     <x-text-input
                         placeholder="Search for any text"
-                        name="search"
+                        :name="'search'"
                         :clear-btn='true'
                         value="{{request('search')}}"
                     />
@@ -19,7 +19,7 @@
                         <x-text-input
                             placeholder="From"
                             type="number"
-                            name="salary_min"
+                            :name="'salary_min'"
                             :clear-btn='true'
                             value="{{request('salary_min')}}"
                         />
@@ -27,7 +27,7 @@
                             placeholder="To"
                             type="number"
                             :clear-btn='true'
-                            name="salary_max"
+                            :name="'salary_max'"
                             value="{{request('salary_max')}}"
                         />
                     </div>
