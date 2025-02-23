@@ -16,7 +16,7 @@ class Job extends Model
 
     public static array $experience  =  ['entry', 'intermediate', 'senior'];
     public static array $categories  =  ['IT', 'Finance', 'Sales', 'Marketing'];
-
+    protected $fillable =['title','salary','location','description','category','experience'];
     protected   $table = 'job_circulars';
     public function employer() :BelongsTo
     {

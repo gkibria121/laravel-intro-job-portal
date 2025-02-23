@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employer;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class MyJobController extends Controller
@@ -13,8 +14,7 @@ class MyJobController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $jobs =$user->employer->jobs;
- 
+        $jobs =$user->employer->jobs; 
         return view('my-jobs.index' ,['jobs' => $jobs]);
     }
 
@@ -22,9 +22,11 @@ class MyJobController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    { 
+        $experienceOptions = arrayToAccosArray(Job::$experience) ;
+        $categoryOptions =   arrayToAccosArray(Job::$categories);
          
-        return view('my-jobs.index' );
+        return view('my-jobs.create',[ 'experienceOptions'=> $experienceOptions,"categoryOptions" => $categoryOptions] );
     }
 
     /**
@@ -32,25 +34,22 @@ class MyJobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $validated = $request->validate([
+            'title' => "required",
+            'location' => 'required',
+            'salary' => 'required|numeric|min:1|max:100000',
+            'description' => 'required',
+            'experience' => 'required',
+            'category' => 'required',
+         ]);
+        $request->user()->employer->jobs()->create($validated );
+         
+         return redirect()->route('my-jobs.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+     
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
+  
     /**
      * Update the specified resource in storage.
      */

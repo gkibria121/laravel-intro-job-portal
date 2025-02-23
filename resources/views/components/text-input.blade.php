@@ -22,8 +22,9 @@
         type="{{ $attributes['type'] ?? 'text' }}"
         id="{{ $name }}"
         name="{{ $name }}"
+        value="{{ old($name, '') }}"
         {{ $attributes }}
-        @class(['w-full rounded-md px-2 py-1 outline-none ring-1 ring-slate-400 focus:ring-2 focus:ring-blue-400', 'pr-8' => $clearBtn, $attributes['class'] ?? ''])
+        {{ $attributes->class(['w-full rounded-md px-2 py-1 outline-none ring-1 ring-slate-400 focus:ring-2 focus:ring-blue-400', 'pr-8' => $clearBtn]) }}
     />
 
     <x-validation-error-message :name="$name" />

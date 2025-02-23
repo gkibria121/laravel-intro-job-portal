@@ -6,12 +6,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class RadioOptions extends Component
+class Label extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $name, public array $options , public ?bool $isLink)
+    public function __construct(public ?string $for)
     {
         //
     }
@@ -21,6 +21,6 @@ class RadioOptions extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.radio-options');
+        return view('components.label');
     }
 }

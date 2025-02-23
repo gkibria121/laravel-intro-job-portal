@@ -33,8 +33,8 @@
                     </div>
                 </x-form-group>
 
-                <x-radio-options :name="'experience'" :options="$experienceOptions" />
-                <x-radio-options :name="'category'" :options="$categoryOptions" />
+                <x-radio-options :isLink="true" :name="'experience'" :options="$experienceOptions" />
+                <x-radio-options :isLink="true" :name="'category'" :options="$categoryOptions" />
 
                 <x-button class="col-span-2 mt-3 flex justify-center" type="submit">Filter</x-button>
             </form>
