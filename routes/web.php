@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MyJobApplicationController;
 use App\Http\Controllers\MyJobController;
+use App\Http\Middleware\EmployerMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', fn() => to_route('jobs.index'));
@@ -18,6 +19,6 @@ Route::middleware('auth')->group(function (){
     Route::get('jobs/{job}/apply',[JobController::class,'applyView'])->name('jobs.applyView');
     Route::post('jobs/{job}/apply',[JobController::class,'apply'])->name('jobs.apply');
     Route::resource('my-job-applications', MyJobApplicationController::class  );
-    Route::resource('my-jobs', MyJobController::class  );
+    Route::resource('my-jobs', MyJobController::class  )->middleware(EmployerMiddleware::class);
     Route::resource('employers', EmployerController::class  );
 } );
