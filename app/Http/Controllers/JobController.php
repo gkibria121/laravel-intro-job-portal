@@ -32,6 +32,9 @@ class JobController extends Controller
        $validated = $request->validate([
         'expected_salary' =>'required|min:1|max:200000'
        ]);
+       if($job->hasApplied($request->user())){
+         return redirect()->route( 'jobs.show',$job)->with('error', "You already applied for this job!");
+       }
 
        $job->jobApplications()->create([
         'user_id' => $request->user()->id,

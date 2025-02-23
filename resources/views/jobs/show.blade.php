@@ -1,6 +1,7 @@
 <x-layout>
     <x-breadcrumbs :links="[ 'Jobs' => route('jobs.index')  , $job->title => route('jobs.show',['job' => $job])]" />
     <x-success-message />
+    <x-error-message />
 
     <x-job-card :$job class="mt-4">
         <p class="my-4">
