@@ -1,5 +1,4 @@
 <x-layout>
-    <x-success-message />
     <x-breadcrumbs :links="['My Job Applications' => route('my-job-applications.index')]" />
 
     @forelse ($applications as $application)

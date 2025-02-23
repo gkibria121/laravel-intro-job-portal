@@ -39,8 +39,7 @@ class JobController extends Controller
          return redirect()->route( 'jobs.show',$job)->with('error', "You already applied for this job!");
        }
        $file = $request->file('resume');
-       $filePath = $file->store();
-      dd($filePath);
+       $filePath = $file->store(); 
        $job->jobApplications()->create([
         'user_id' => $request->user()->id, 
         'cv_path' => $filePath,

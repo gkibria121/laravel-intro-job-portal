@@ -24,6 +24,9 @@
                         <a href="{{ route('my-job-applications.index') }}">Applications</a>
                     </li>
                     <li>
+                        <a href="{{ route('my-jobs.index') }}">My Jobs</a>
+                    </li>
+                    <li>
                         <form action="{{ route('auth.logout') }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -40,6 +43,8 @@
                 @endauth
             </ul>
         </nav>
+        <x-success-message />
+        <x-error-message />
         {{ $slot }}
     </body>
 </html>
