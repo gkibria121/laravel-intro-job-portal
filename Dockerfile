@@ -38,7 +38,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock ./
 
 # Install PHP dependencies
-RUN composer install --no-scripts --no-autoloader --no-dev --prefer-dist
+RUN composer install  
 
 # Copy package.json files for Node.js dependencies (if they exist)
 COPY package*.json ./
