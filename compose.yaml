@@ -14,7 +14,7 @@ services:
       - "${NGINX_PORT:-8089}:80"
     depends_on:
      - php-fpm 
-
+    restart: unless-stopped
   php-fpm:
     # For the php-fpm service, we will create a custom image to install the necessary PHP extensions and setup proper permissions.
     build:
