@@ -15,6 +15,14 @@ services:
       - "${NGINX_PORT:-8089}:80"
     depends_on:
      - php-fpm  
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lara-job.rule=Host(`jobs.gkibria121.com`)"
+      - "traefik.http.routers.lara-job.entrypoints=web"
+      - "traefik.http.services.lara-job.loadbalancer.server.port=80"
+
+
   php-fpm:
     build:
       context: .
@@ -60,11 +68,7 @@ services:
       
  
 
-networks:
-  # Attach the service to the 'laravel' network.
-  # -----------------------------------------------------------
-  # This custom network allows all services within it to communicate using their service names as hostnames.
-  # For example, 'php-fpm' can connect to 'postgres' by using 'postgres' as the hostname.
+networks: 
   # -----------------------------------------------------------
   traefik-network:
     external: true
