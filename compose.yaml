@@ -16,21 +16,21 @@ services:
     depends_on:
      - php-fpm  
   php-fpm:
-    # For the php-fpm service, we will create a custom image to install the necessary PHP extensions and setup proper permissions.
     build:
       context: .
       dockerfile: ./docker/common/php-fpm/Dockerfile
       target: production 
     volumes:
-      - laravel-public-assets:/var/www/public/build  # Mount built public assets to ensure the manifest.json and hashed files match between Nginx and PHP-FPM
-      - laravel-storage-production:/var/www/storage  # Mount the storage volume
+      - laravel-public-assets:/var/www/public/build
+      - laravel-storage-production:/var/www/storage 
     env_file:
       - .env
     networks:
-      - traefik-network 
-       
+      - traefik-network
     depends_on:
-    -  postgres
+      postgres:
+        condition: service_healthy
+
 
   postgres:
     image: postgres:16
@@ -45,8 +45,13 @@ services:
     volumes:
       - postgres-data-production:/var/lib/postgresql/data
     networks:
-      - traefik-network 
-      
+      - traefik-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USERNAME:-laravel} -d ${POSTGRES_DATABASE:-app}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 
   redis:
     image: redis:alpine 
