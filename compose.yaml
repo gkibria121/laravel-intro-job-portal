@@ -4,24 +4,20 @@ services:
       context: .
       dockerfile: ./docker/production/nginx/Dockerfile 
     volumes: 
-      # -----------------------------------------------------------
       - laravel-storage-production:/var/www/storage:ro
       - laravel-public-assets:/var/www/public/build:ro
     networks:
-      - traefik-network
-
-    ports: 
-      # -----------------------------------------------------------
+      - traefik-network     # Public-facing network (Traefik)
+      - app-network         # Private app network (connects to php-fpm)
+    ports:
       - "${NGINX_PORT:-8089}:80"
     depends_on:
-     - php-fpm  
-
+      - php-fpm  
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.lara-job.rule=Host(`jobs.gkibria121.com`)"
       - "traefik.http.routers.lara-job.entrypoints=web"
       - "traefik.http.services.lara-job.loadbalancer.server.port=80"
-
 
   php-fpm:
     build:
@@ -34,11 +30,10 @@ services:
     env_file:
       - .env
     networks:
-      - traefik-network
+      - app-network          # Internal network (php-fpm <-> db/redis)
     depends_on:
       postgres:
         condition: service_healthy
-
 
   postgres:
     image: postgres:16
@@ -53,26 +48,23 @@ services:
     volumes:
       - postgres-data-production:/var/lib/postgresql/data
     networks:
-      - traefik-network
+      - app-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USERNAME:-laravel} -d ${POSTGRES_DATABASE:-app}"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-
   redis:
     image: redis:alpine 
     networks:
-      - traefik-network 
-      
- 
+      - app-network 
 
-networks: 
-  # -----------------------------------------------------------
+networks:
   traefik-network:
-    external: true
-  
+    external: true   # Traefik network (already defined globally)
+  app-network:
+    driver: bridge   # Internal network for php-fpm, postgres, redis
 
 volumes:
   postgres-data-production:
