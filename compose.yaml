@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.lara-job.rule=Host(`jobs.gkibria121.com`)"
       - "traefik.http.routers.lara-job.entrypoints=web"
       - "traefik.http.services.lara-job.loadbalancer.server.port=80"
-
+      - "traefik.docker.network=traefik-network"
   php-fpm:
     build:
       context: .
